@@ -17,4 +17,9 @@ public class ClienteService {
         Optional<Cliente> obj = repo.findById(id);
         return obj.orElseThrow(() -> new ObjectNotFoundException("Cliente não encontrado! Id: " + id));
     }
+
+    public Cliente insert(Cliente obj) {
+        obj.setId(null);
+        return repo.save(obj);
+    }
 }
