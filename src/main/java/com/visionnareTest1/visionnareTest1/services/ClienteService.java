@@ -3,6 +3,7 @@ import java.util.Optional;
 
 import com.visionnareTest1.visionnareTest1.domain.Cliente;
 import com.visionnareTest1.visionnareTest1.repository.ClienteRepository;
+import com.visionnareTest1.visionnareTest1.services.exception.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +15,6 @@ public class ClienteService {
 
     public Cliente buscar(Integer id) {
         Optional<Cliente> obj = repo.findById(id);
-        return obj.orElse(null);
+        return obj.orElseThrow(() -> new ObjectNotFoundException("Cliente não encontrado! Id: " + id));
     }
 }
