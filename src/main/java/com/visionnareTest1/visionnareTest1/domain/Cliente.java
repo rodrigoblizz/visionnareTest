@@ -24,7 +24,7 @@ public class Cliente implements Serializable {
     public Cliente(){
     }
 
-    public Cliente(int id, String nome, String cpf, String nascimento){
+    public Cliente(Integer id, String nome, String cpf, String nascimento){
         super();
         this.id = id;
         this.nome = nome;
