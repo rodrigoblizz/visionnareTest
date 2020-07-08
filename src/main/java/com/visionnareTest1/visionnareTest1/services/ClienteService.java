@@ -1,4 +1,5 @@
 package com.visionnareTest1.visionnareTest1.services;
+import java.util.List;
 import java.util.Optional;
 
 import com.visionnareTest1.visionnareTest1.domain.Cliente;
@@ -37,6 +38,10 @@ public class ClienteService {
         } catch (DataIntegrityViolationException e){
             throw new DataIntegrityException("Não foi possível excluir o cliente");
         }
+    }
+
+    public List<Cliente> findAll(){
+        return repo.findAll();
     }
 
 }

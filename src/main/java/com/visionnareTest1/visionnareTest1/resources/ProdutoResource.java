@@ -1,39 +1,38 @@
 package com.visionnareTest1.visionnareTest1.resources;
 
 import com.visionnareTest1.visionnareTest1.domain.Cliente;
-import com.visionnareTest1.visionnareTest1.services.ClienteService;
+import com.visionnareTest1.visionnareTest1.domain.Produto;
+import com.visionnareTest1.visionnareTest1.services.ProdutoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("/clientes")
-public class ClienteResource {
+@RequestMapping("/produtos")
+public class ProdutoResource {
 
     @Autowired
-    private ClienteService service;
+    private ProdutoService service;
 
     @RequestMapping(value ="/{id}", method = RequestMethod.GET)
-    public ResponseEntity<Cliente> find(@PathVariable Integer id){
-        Cliente obj = service.find(id);
+    public ResponseEntity<Produto> find(@PathVariable Integer id){
+        Produto obj = service.find(id);
         return ResponseEntity.ok().body(obj);
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<Void> insert(@RequestBody Cliente obj){
+    public ResponseEntity<Void> insert(@RequestBody Produto obj){
         obj = service.insert(obj);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
         return ResponseEntity.created(uri).build();
     }
 
     @RequestMapping(value ="/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<Void> update(@RequestBody Cliente obj, @PathVariable Integer id){
+    public ResponseEntity<Void> update(@RequestBody Produto obj, @PathVariable Integer id){
         obj.setId(id);
         obj = service.update(obj);
         return ResponseEntity.noContent().build();
@@ -46,8 +45,8 @@ public class ClienteResource {
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    public ResponseEntity<List<Cliente>> findAll(){
-        List<Cliente> list = service.findAll();
+    public ResponseEntity<List<Produto>> findAll(){
+        List<Produto> list = service.findAll();
         return ResponseEntity.ok().body(list);
     }
 }
